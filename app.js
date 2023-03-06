@@ -10,6 +10,11 @@ let heart2 = document.getElementById("heart2");
 let heart3 = document.getElementById("heart3");
 let gameover = document.querySelector("#game_over");
 let time = document.querySelector("#time_sprite");
+let human1 = document.querySelector("#game_elements_human");
+let human2 = document.querySelector("#game_elements_human2");
+let human3 = document.querySelector("#game_elements_human3");
+let human4 = document.querySelector("#game_elements_human4");
+let human5 = document.querySelector("#game_elements_human5");
 
 
 function HumanClicked() {
@@ -52,25 +57,23 @@ function showStartScreen() {
 }
 
 //when bomb is cliked
-function bombClicked(e) {
-  e.className = "zoom_out";
-  const container = this;
+function bombClicked() {
+  className = "zoom_out";
   console.log("life: " + life);
   life--; // trækker 1 fra life
-
   console.log("efter minus " + life);
-  if (life == 2) {
+  if (life === 2) {
     heart1.style.visibility = "hidden";
     console.log("ved life 2: " + life);
-  } else if (life == 1) {
+  } else if (life === 1) {
     heart2.style.visibility = "hidden";
     console.log("ved 1 liv " + life);
-  } else if (life == 0) {
+  } else if (life === 0) {
     heart3.style.visibility = "hidden";
     gameOver();
   }
 
- bombRestart.call(this);
+//  bombRestart.call(this);
 }
 
 function resetlife() {
@@ -95,14 +98,15 @@ function startgame() {
   gameover.classList.add("hidden");
   startAnimations();
   startPositions();
-  listeners();
-  bomblisteners();
+  // listeners();
+  // bomblisteners();
   resetlife();
   ResetScore();
   timerRestart();
   Registerclick();
   startTimer();
   showGameScreen();
+  startzoom();
   document.querySelector("#background_sound").play();
   document.querySelector("#background_sound").currentTime = 60;
 }
@@ -247,13 +251,8 @@ function Registerclick() {
   document.querySelector("#game_elements_bomb5").addEventListener("click", bombClicked);
 }
 
-function startAnimations() {
-  let human1 = document.querySelector("#game_elements_human");
-  let human2 = document.querySelector("#game_elements_human2");
-  let human3 = document.querySelector("#game_elements_human3")
-  let human4 = document.querySelector("#game_elements_human4");
-  let human5 = document.querySelector("#game_elements_human5");
 
+function startAnimations() {
   document.querySelector("#game_elements_bomb").classList.add("falling");
   document.querySelector("#game_elements_bomb2").classList.add("falling");
   document.querySelector("#game_elements_bomb3").classList.add("falling");
@@ -268,14 +267,26 @@ function startAnimations() {
 }
 
 function startPositions() {
-  let human1 = document.querySelector("#game_elements_human");
-  let human2 = document.querySelector("#game_elements_human2");
-  let human3 = document.querySelector("#game_elements_human3");
-  let human4 = document.querySelector("#game_elements_human4");
-  let human5 = document.querySelector("#game_elements_human5");
+  
   human1.classList.add("position1");
   human2.classList.add("position2");
   human3.classList.add("position3");
   human4.classList.add("position4");
   human5.classList.add("position5");
+  document.querySelector("#game_elements_bomb").classList.add("position1");
+  document.querySelector("#game_elements_bomb2").classList.add("position3");
+  document.querySelector("#game_elements_bomb3").classList.add("position2");
+  document.querySelector("#game_elements_bomb4").classList.add("position4");
+  document.querySelector("#game_elements_bomb5").classList.add("position5");
 }
+
+function startzoom () {
+  
+   document.querySelector("#game_elements_bomb").classList.add("zoom_out");
+  document.querySelector("#game_elements_bomb2").classList.add("zoom_out");
+  document.querySelector("#game_elements_bomb3").classList.add("zoom_out");
+  document.querySelector("#game_elements_bomb4").classList.add("zoom_out");
+  document.querySelector("#game_elements_bomb5").classList.add("zoom_out");
+  
+} 
+
