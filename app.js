@@ -57,8 +57,8 @@ function showStartScreen() {
 }
 
 //when bomb is cliked
-function bombClicked() {
-  className = "zoom_out";
+function bombClicked(e) {
+  e.className = "zoom_out";
   console.log("life: " + life);
   life--; // trækker 1 fra life
   console.log("efter minus " + life);
@@ -282,7 +282,7 @@ function startPositions() {
 
 function startzoom () {
   
-   document.querySelector("#game_elements_bomb").classList.add("zoom_out");
+  document.querySelector("#game_elements_bomb").classList.add("zoom_out");
   document.querySelector("#game_elements_bomb2").classList.add("zoom_out");
   document.querySelector("#game_elements_bomb3").classList.add("zoom_out");
   document.querySelector("#game_elements_bomb4").classList.add("zoom_out");
