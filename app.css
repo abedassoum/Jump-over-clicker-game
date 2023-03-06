@@ -1,0 +1,414 @@
+img {
+  width:100%;
+}
+
+
+#screen {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-color: red;
+  align-items: center;
+  position: relative;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+#game {
+  background-color: blue;
+  text-align: center;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-area: 1/1;
+  overflow: hidden;
+  display: grid;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  border-width: 2px;
+  border-color: black;
+  grid-template-columns: 10%/10%;
+  grid-template-rows: 100%;
+}
+
+#start {
+  background-color: cornflowerblue;
+  text-align: center;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+}
+
+#game_over {
+  background-color: rgb(252, 19, 19);
+  text-align: center;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+}
+
+#level_complete {
+  background-color: rgb(43, 255, 0);
+  text-align: center;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  border-width: 5px;
+  border-color: black;
+}
+
+#game_background {
+  background-image: url(https://img.freepik.com/free-vector/sea-landscape-with-stones-water-clouds_107791-793.jpg?w=900&t=st=1676404181~exp=1676404781~hmac=7684088ed62af32b4d4ebc802d8d3f1623bb3cfc87ee8df2a22d16f14b81bdac);
+  background-size: cover;
+  grid-area: 1/1;
+}
+
+#game_elements_helicopter {
+  z-index: 1;
+  position: absolute;
+  left: 89%;
+  top: 7%;
+}
+
+#game_ui_health {
+  z-index: 1;
+  position: absolute;
+  right: 93%;
+}
+
+#game_ui_time {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-color: azure;
+}
+
+#time_container {
+  z-index: 1;
+  position: absolute;
+  width: 1.5%;
+  aspect-ratio: 6/30;
+  border: 2px solid black;
+  background-color: rgba(208, 204, 204, 0.383);
+  top:  -52vw;
+  right: 1vw;
+}
+
+#time_sprite {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: limegreen;
+  transform-origin: center bottom;
+}
+
+
+
+.shrink {
+  animation-name: shrink_kf;
+  animation-duration: 15s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes shrink_kf {
+  0% {
+    scale: 1 1;
+    background-color: limegreen;
+  }
+  50% {
+    background-color: rgb(255, 230, 0);
+  }
+  100% {
+    scale: 1 0;
+    background-color: red;
+  }
+}
+
+#game_ui_score {
+  z-index: 2;
+  position: absolute;
+  right: 2%;
+  top: 1%;
+}
+
+
+#game_elements {
+  position: relative;
+  grid-area: 1/1;
+}
+
+#game_elements_human {
+  z-index: 1;
+  position: absolute;
+  
+}
+
+#game_elements_human2 {
+  z-index: 1;
+ 
+}
+
+#game_elements_human3 {
+  z-index: 1;
+  position: absolute;
+  
+}
+
+#game_elements_human4 {
+  z-index: 1;
+  position: absolute;
+  
+}
+
+#game_elements_human5 {
+  z-index: 1;
+  position: absolute;
+  
+}
+
+#game_elements_bomb {
+  z-index: 1;
+  position: absolute;
+}
+
+#game_elements_bomb2 {
+  z-index: 1;
+  position: absolute;
+ 
+}
+
+#game_elements_bomb3 {
+  z-index: 1;
+  position: absolute;
+  
+}
+
+#game_elements_bomb4 {
+  z-index: 1;
+  position: absolute;
+  
+}
+
+#game_elements_bomb5 {
+  z-index: 1;
+  position: absolute;
+  
+}
+
+#game_background img {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#game_ui_score img {
+  width: 130px;
+  height: 100px;
+}
+
+#game_ui_health img {
+  width: 30px;
+  height: 50px;
+  object-fit: contain;
+}
+
+#score {
+ font-size: larger;
+ font-weight: 100;
+  object-fit: contain;
+  color: blueviolet;
+}
+
+#game_elements_helicopter img,
+#game_elements_human img,
+#game_elements_human2 img,
+#game_elements_human3 img,
+#game_elements_human4 img,
+#game_elements_human5 img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
+#game_elements_bomb img,
+#game_elements_bomb2 img,
+#game_elements_bomb3 img,
+#game_elements_bomb4 img,
+#game_elements_bomb5 img {
+  width: 50px;
+  height: 150px;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 600px) {
+  #game_elements_helicopter img,
+  #game_elements_human img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.hidden,#start.hidden,#game_over.hidden,#level_complete.hidden {
+  
+  display: none;
+  
+}
+
+.move-left {
+   animation-name: move-left;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: forward;
+
+}
+
+
+@keyframes move-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-1000%);
+  }
+}
+
+.zoom_out {
+  animation-name: zoom_out;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes zoom_out {
+  0% {
+  }
+
+  100% {
+    transform: scale(0, 0);
+  }
+}
+
+.zoom_in {
+    animation-name: zoom_in;
+    animation-duration: 1.7s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes zoom_in {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    90% {
+        transform: translate(100%, 0) scale(15) rotate(90deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(100%, 0) scale(15) rotate(90deg);
+        opacity: 0;
+    }
+}
+
+.fade_out {
+  animation-name: fade_out;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+
+@keyframes fade_out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.falling {
+    animation-name: falling;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes falling {
+    0% {
+        transform: translate(0,-100%);
+    }
+
+    100% {
+        transform: translate(0,56.25vw);
+    }
+}
+
+.paused {
+    animation-play-state: paused;
+}
+
+@keyframes pulse_kf {
+    0% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+.position1 {
+left: 10vw; 
+}
+
+.position2 {
+left: 40vw;
+}
+
+.position3 {
+ left: 70vw;
+}
+
+.position4 {
+left: 55vw;
+}
+
+.poisiton5 {
+left: 30vw; 
+}
+
+.active_heart {
+    filter: drop-shadow(0 0 2px yellow);
+}
+
+.broken_heart {
+    filter: grayscale(75%) blur(0.5px);
+}
+
+
+button {
+    padding: 0.5em 1em;
+    font-size: 2em;
+    margin: auto;
+    background-color: #ffad01;
+    color: #fff4bf;
+    border: 10px solid #ffc72e;
+    cursor: pointer;
+    border-radius: 10px;
+}
