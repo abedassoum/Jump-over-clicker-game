@@ -393,15 +393,6 @@ left: 55vw;
 left: 30vw; 
 }
 
-.active_heart {
-    filter: drop-shadow(0 0 2px yellow);
-}
-
-.broken_heart {
-    filter: grayscale(75%) blur(0.5px);
-}
-
-
 button {
     padding: 0.5em 1em;
     font-size: 2em;

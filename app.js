@@ -11,6 +11,7 @@ let heart3 = document.getElementById("heart3");
 let gameover = document.querySelector("#game_over");
 let time = document.querySelector("#time_sprite");
 
+
 function HumanClicked() {
   console.log("Click Human");
   const human = this;
@@ -80,9 +81,7 @@ function ready() {
   console.log("JavaScript ready!");
   document.querySelector("#btn_start").addEventListener("click", startgame);
   document.querySelector("#btn_restart").addEventListener("click", startgame);
-  document
-    .querySelector("#btn_go_to_start")
-    .addEventListener("click", showStartScreen);
+  document.querySelector("#btn_go_to_start").addEventListener("click", showStartScreen);
 }
 
 function startgame() {
@@ -216,21 +215,11 @@ function displayPoints() {
 }
 
 function listeners() {
-  document
-    .querySelector("#game_elements_human")
-    .addEventListener("animationiteration", humanRestart);
-  document
-    .querySelector("#game_elements_human2")
-    .addEventListener("animationiteration", humanRestart);
-  document
-    .querySelector("#game_elements_human3")
-    .addEventListener("animationiteration", humanRestart);
-  document
-    .querySelector("#game_elements_human4")
-    .addEventListener("animationiteration", humanRestart);
-  document
-    .querySelector("#game_elements_human5")
-    .addEventListener("animationiteration", humanRestart);
+  document.querySelector("#game_elements_human").addEventListener("animationiteration", humanRestart);
+  document.querySelector("#game_elements_human2").addEventListener("animationiteration", humanRestart);
+  document.querySelector("#game_elements_human3").addEventListener("animationiteration", humanRestart);
+  document.querySelector("#game_elements_human4").addEventListener("animationiteration", humanRestart);
+  document.querySelector("#game_elements_human5").addEventListener("animationiteration", humanRestart);
 }
 
 function bomblisteners() {
