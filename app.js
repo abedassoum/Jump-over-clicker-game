@@ -54,6 +54,7 @@ function showStartScreen() {
 //when bomb is cliked
 function bombClicked(e) {
   e.className = "zoom_out";
+  const container = this;
   console.log("life: " + life);
   life--; // trækker 1 fra life
 
@@ -68,6 +69,8 @@ function bombClicked(e) {
     heart3.style.visibility = "hidden";
     gameOver();
   }
+
+ bombRestart.call(this);
 }
 
 function resetlife() {
@@ -92,8 +95,8 @@ function startgame() {
   gameover.classList.add("hidden");
   startAnimations();
   startPositions();
-  // listeners();
-  // bomblisteners();
+  listeners();
+  bomblisteners();
   resetlife();
   ResetScore();
   timerRestart();
