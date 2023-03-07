@@ -4,6 +4,7 @@ window.addEventListener("load", ready);
 let life = 3; //total life
 let score = 0; // total score
 let human = document.querySelector("#game_elements_human");
+let gamerunning = false;
 //hearts imgs
 let heart1 = document.getElementById("heart1");
 let heart2 = document.getElementById("heart2");
@@ -21,7 +22,6 @@ let bomb3 = document.querySelector("#game_elements_bomb3");
 let bomb4 = document.querySelector("#game_elements_bomb4");
 let bomb5 = document.querySelector("#game_elements_bomb5");
 
-
 function HumanClicked() {
   console.log("Click Human");
   const human = this;
@@ -32,7 +32,7 @@ function HumanClicked() {
   incrementPoints();
   document.querySelector("#human_sound").play();
   document.querySelector("#human_sound").currentTime = 0;
-  if (score === 5){
+  if (score === 5) {
     levelComplete();
   }
 }
@@ -63,10 +63,11 @@ function showStartScreen() {
 
 //when bomb is cliked
 function bombClicked() {
-   bomb = this
-   bomb.removeEventListener("click", bombClicked);
-   bomb.classList.add("paused");
-   bomb.querySelector("img").classList.add("zoom_out");
+  bomb = this;
+  bomb.removeEventListener("click", bombClicked);
+  bomb.classList.add("paused");
+  bomb.querySelector("img").classList.add("zoom_out");
+
   console.log("life: " + life);
   life--; // trækker 1 fra life
   console.log("efter minus " + life);
@@ -80,11 +81,9 @@ function bombClicked() {
     heart3.style.visibility = "hidden";
     gameOver();
   }
-
-//  bombRestart.call(this);
+    document.querySelector("#bomb_sound").play();
+    document.querySelector("#bomb_sound").currentTime = 0;
 }
-
-
 
 function resetlife() {
   life = 3;
@@ -97,26 +96,30 @@ function ready() {
   console.log("JavaScript ready!");
   document.querySelector("#btn_start").addEventListener("click", startgame);
   document.querySelector("#btn_restart").addEventListener("click", startgame);
-  document.querySelector("#btn_go_to_start").addEventListener("click", showStartScreen);
+  document
+    .querySelector("#btn_go_to_start")
+    .addEventListener("click", showStartScreen);
 }
 
 function startgame() {
   console.log("start game");
   let startgame = document.querySelector("#start");
+  gamerunning = true;
   console.log(start);
   startgame.classList.add("hidden");
   gameover.classList.add("hidden");
   startAnimations();
   startPositions();
-  // listeners();
-  // bomblisteners();
   resetlife();
   ResetScore();
   timerRestart();
   Registerclick();
   startTimer();
   showGameScreen();
+  listeners();
+  bomblisteners();
   
+
   document.querySelector("#background_sound").play();
   document.querySelector("#background_sound").currentTime = 60;
 }
@@ -126,14 +129,10 @@ function incrementPoints() {
   score++;
   console.log("har nu " + score + "score");
   displayPoints();
-
-  if (score >= 5) {
-    levelComplete();
-  }
 }
 
-
 function levelComplete() {
+ gamerunning = false;
   console.log("Level Complete");
   if (score >= 5) {
     document.querySelector("#level_complete").classList.remove("hidden");
@@ -180,12 +179,10 @@ function humanRestart() {
 function bombRestart() {
   console.log("bomb restart");
   const bomb = this;
-
   // genstart falling animation
   bomb.classList.remove("falling");
   bomb.offsetWidth;
   bomb.classList.add("falling");
-
   // fjern alle positioner
   bomb.classList.remove(
     "position1",
@@ -201,6 +198,7 @@ function bombRestart() {
 }
 
 function gameOver() {
+  gamerunning = false;
   console.log("Game Over");
   console.log(gameover);
   gameover.classList.remove("hidden");
@@ -217,13 +215,15 @@ function startTimer() {
 }
 
 function timeIsUp() {
+  
   console.log("Tiden er gået!");
-
-  if (score >= 5) {
+ if (gamerunning) {
+ if (score >= 5) {
     levelComplete();
   } else {
     gameOver();
   }
+ }
 }
 
 function displayPoints() {
@@ -232,42 +232,81 @@ function displayPoints() {
 }
 
 function listeners() {
-  document.querySelector("#game_elements_human").addEventListener("animationiteration", humanRestart);
-  document.querySelector("#game_elements_human2").addEventListener("animationiteration", humanRestart);
-  document.querySelector("#game_elements_human3").addEventListener("animationiteration", humanRestart);
-  document.querySelector("#game_elements_human4").addEventListener("animationiteration", humanRestart);
-  document.querySelector("#game_elements_human5").addEventListener("animationiteration", humanRestart);
+  document
+    .querySelector("#game_elements_human")
+    .addEventListener("animationiteration", humanRestart);
+  document
+    .querySelector("#game_elements_human2")
+    .addEventListener("animationiteration", humanRestart);
+  document
+    .querySelector("#game_elements_human3")
+    .addEventListener("animationiteration", humanRestart);
+  document
+    .querySelector("#game_elements_human4")
+    .addEventListener("animationiteration", humanRestart);
+  document
+    .querySelector("#game_elements_human5")
+    .addEventListener("animationiteration", humanRestart);
 }
 
 function bomblisteners() {
-  document.querySelector("#game_elements_bomb").addEventListener("animationiteration", bombRestart);
-  document.querySelector("#game_elements_bomb2").addEventListener("animationiteration", bombRestart);
-  document.querySelector("#game_elements_bomb3").addEventListener("animationiteration", bombRestart);
-  document.querySelector("#game_elements_bomb4").addEventListener("animationiteration", bombRestart);
-  document.querySelector("#game_elements_bomb5").addEventListener("animationiteration", bombRestart);
+  document
+    .querySelector("#game_elements_bomb")
+    .addEventListener("animationiteration", bombRestart);
+  document
+    .querySelector("#game_elements_bomb2")
+    .addEventListener("animationiteration", bombRestart);
+  document
+    .querySelector("#game_elements_bomb3")
+    .addEventListener("animationiteration", bombRestart);
+  document
+    .querySelector("#game_elements_bomb4")
+    .addEventListener("animationiteration", bombRestart);
+  document
+    .querySelector("#game_elements_bomb5")
+    .addEventListener("animationiteration", bombRestart);
 }
 
 function Registerclick() {
   // Registrer click
-  document.querySelector("#game_elements_human").addEventListener("click", HumanClicked);
-  document.querySelector("#game_elements_human2").addEventListener("click", HumanClicked);
-  document.querySelector("#game_elements_human3").addEventListener("click", HumanClicked);
-  document.querySelector("#game_elements_human4").addEventListener("click", HumanClicked);
-  document.querySelector("#game_elements_human5").addEventListener("click", HumanClicked);
-  document.querySelector("#game_elements_bomb").addEventListener("click", bombClicked);
-  document.querySelector("#game_elements_bomb2").addEventListener("click", bombClicked);
-  document.querySelector("#game_elements_bomb3").addEventListener("click", bombClicked);
-  document.querySelector("#game_elements_bomb4").addEventListener("click", bombClicked);
-  document.querySelector("#game_elements_bomb5").addEventListener("click", bombClicked);
+  document
+    .querySelector("#game_elements_human")
+    .addEventListener("click", HumanClicked);
+  document
+    .querySelector("#game_elements_human2")
+    .addEventListener("click", HumanClicked);
+  document
+    .querySelector("#game_elements_human3")
+    .addEventListener("click", HumanClicked);
+  document
+    .querySelector("#game_elements_human4")
+    .addEventListener("click", HumanClicked);
+  document
+    .querySelector("#game_elements_human5")
+    .addEventListener("click", HumanClicked);
+  document
+    .querySelector("#game_elements_bomb")
+    .addEventListener("click", bombClicked);
+  document
+    .querySelector("#game_elements_bomb2")
+    .addEventListener("click", bombClicked);
+  document
+    .querySelector("#game_elements_bomb3")
+    .addEventListener("click", bombClicked);
+  document
+    .querySelector("#game_elements_bomb4")
+    .addEventListener("click", bombClicked);
+  document
+    .querySelector("#game_elements_bomb5")
+    .addEventListener("click", bombClicked);
 }
 
-
 function startAnimations() {
-  document.querySelector("#game_elements_bomb").classList.add("falling");
-  document.querySelector("#game_elements_bomb2").classList.add("falling");
-  document.querySelector("#game_elements_bomb3").classList.add("falling");
-  document.querySelector("#game_elements_bomb4").classList.add("falling");
-  document.querySelector("#game_elements_bomb5").classList.add("falling");
+  bomb.classList.add("falling");
+  bomb2.classList.add("falling");
+  bomb3.classList.add("falling");
+  bomb4.classList.add("falling");
+  bomb5.classList.add("falling");
 
   human1.classList.add("falling");
   human2.classList.add("falling");
@@ -277,17 +316,14 @@ function startAnimations() {
 }
 
 function startPositions() {
-  
   human1.classList.add("position1");
   human2.classList.add("position2");
   human3.classList.add("position3");
   human4.classList.add("position4");
   human5.classList.add("position5");
-  document.querySelector("#game_elements_bomb").classList.add("position1");
-  document.querySelector("#game_elements_bomb2").classList.add("position3");
-  document.querySelector("#game_elements_bomb3").classList.add("position2");
-  document.querySelector("#game_elements_bomb4").classList.add("position4");
-  document.querySelector("#game_elements_bomb5").classList.add("position5");
+  bomb.classList.add("position1");
+  bomb2.classList.add("position3");
+  bomb3.classList.add("position2");
+  bomb4.classList.add("position4");
+  bomb5.classList.add("position5");
 }
-
-
