@@ -15,6 +15,11 @@ let human2 = document.querySelector("#game_elements_human2");
 let human3 = document.querySelector("#game_elements_human3");
 let human4 = document.querySelector("#game_elements_human4");
 let human5 = document.querySelector("#game_elements_human5");
+let bomb = document.querySelector("#game_elements_bomb");
+let bomb2 = document.querySelector("#game_elements_bomb2");
+let bomb3 = document.querySelector("#game_elements_bomb3");
+let bomb4 = document.querySelector("#game_elements_bomb4");
+let bomb5 = document.querySelector("#game_elements_bomb5");
 
 
 function HumanClicked() {
@@ -57,8 +62,11 @@ function showStartScreen() {
 }
 
 //when bomb is cliked
-function bombClicked(e) {
-  e.className = "zoom_out";
+function bombClicked() {
+   bomb = this
+   bomb.removeEventListener("click", bombClicked);
+   bomb.classList.add("paused");
+   bomb.querySelector("img").classList.add("zoom_out");
   console.log("life: " + life);
   life--; // trækker 1 fra life
   console.log("efter minus " + life);
@@ -75,6 +83,8 @@ function bombClicked(e) {
 
 //  bombRestart.call(this);
 }
+
+
 
 function resetlife() {
   life = 3;
@@ -106,7 +116,7 @@ function startgame() {
   Registerclick();
   startTimer();
   showGameScreen();
-  startzoom();
+  
   document.querySelector("#background_sound").play();
   document.querySelector("#background_sound").currentTime = 60;
 }
@@ -280,13 +290,4 @@ function startPositions() {
   document.querySelector("#game_elements_bomb5").classList.add("position5");
 }
 
-function startzoom () {
-  
-  document.querySelector("#game_elements_bomb").classList.add("zoom_out");
-  document.querySelector("#game_elements_bomb2").classList.add("zoom_out");
-  document.querySelector("#game_elements_bomb3").classList.add("zoom_out");
-  document.querySelector("#game_elements_bomb4").classList.add("zoom_out");
-  document.querySelector("#game_elements_bomb5").classList.add("zoom_out");
-  
-} 
 
