@@ -120,15 +120,12 @@ function startgame() {
   gameover.classList.add("hidden");
   startAnimations();
   startPositions();
-//   listeners();
-//   bomblisteners();
   resetlife();
   ResetScore();
   timerRestart();
   Registerclick();
   startTimer();
   showGameScreen();
- // startzoom();
   document.querySelector("#background_sound").play();
   document.querySelector("#background_sound").currentTime = 60;
 }
@@ -224,22 +221,22 @@ function gameOver() {
 
 function startTimer() {
   console.log("Timer starter");
+  gamerunning = true;
   document.querySelector("#time_sprite").classList.add("shrink");
-  document
-    .querySelector("#time_sprite")
-    .addEventListener("animationend", timeIsUp);
+  document.querySelector("#time_sprite").addEventListener("animationend", timeIsUp);
 }
 
 function timeIsUp() {
   console.log("Tiden er gået!");
-  if (gamerunning){
-  if (score >= 5) {
-    levelComplete();
-  } else {
-    gameOver();
+  if(gamerunning) {
+    if (score >= 5) {
+      levelComplete();
+    } else {
+      gameOver();
+    }
   }
  }
-}
+
 
 function displayPoints() {
   console.log("vis score");
